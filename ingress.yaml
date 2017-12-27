@@ -1,0 +1,28 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: rs-ingress
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.org/ssl-services: "rs-catalog-api-service,rs-property-api-service"
+spec:
+  tls:
+    - hosts:
+      - api.bienderaiz.com
+      secretName: tls-certificate
+  rules:
+  - host: api.bienderaiz.com
+    http:
+      paths:
+      - path: /property
+        backend:
+          serviceName: rs-property-api-service
+          servicePort: 8080
+      - path: /property/
+        backend:
+          serviceName: rs-property-api-service
+          servicePort: 8080
+      - path: /catalog/
+        backend:
+          serviceName: rs-catalog-api-service
+          servicePort: 8080
