@@ -5,6 +5,7 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: "nginx"
     nginx.org/ssl-services: "rs-catalog-api-service,rs-property-api-service"
+    ingress.kubernetes.io/enable-cors: "true"
 spec:
   tls:
     - hosts:
